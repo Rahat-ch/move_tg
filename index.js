@@ -26,7 +26,8 @@ const privateKey = new Ed25519PrivateKey(PRIVATE_KEY);
 const userAccount = Account.fromPrivateKey({ privateKey });
 const accountAddress = userAccount.accountAddress;
 
-console.log({ addy: accountAddress.toString() })
+console.log({ addy: accountAddress.toString() });
+
 // Initialize the Express app
 const app = express();
 app.use(bodyParser.json());
@@ -133,7 +134,7 @@ async function updateGameState(newBoard, newWins, newLosses, newInProgress) {
 
     // Submit the transaction to chain
     const updateCommittedTxn = await aptos.transaction.submit.simple({
-        transaction,
+        transaction: updateTransaction, // Corrected variable name
         senderAuthenticator: updateSignature,
     });
 
