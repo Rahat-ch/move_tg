@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Import cors
 const { Account, Aptos, AptosConfig, Network, Ed25519PrivateKey } = require('@aptos-labs/ts-sdk');
 
 // Define the custom network configuration
@@ -30,6 +31,11 @@ console.log({ addy: accountAddress.toString() });
 
 // Initialize the Express app
 const app = express();
+
+// Use CORS middleware to allow all origins
+app.use(cors());
+
+// Use body-parser middleware to parse JSON requests
 app.use(bodyParser.json());
 
 // Function to display the board (same as before)
